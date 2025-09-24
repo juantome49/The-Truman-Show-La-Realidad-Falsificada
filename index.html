@@ -15,7 +15,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color: #F05E2F
+            color: #333;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -67,7 +67,7 @@
             flex-direction: column;
             align-items: center;
         }
-        
+
         .section h2 {
             font-family: 'Oswald', sans-serif;
             font-size: 1.8em;
@@ -107,7 +107,18 @@
         li {
             margin-bottom: 10px;
         }
-        
+
+        .welcome-message {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            backdrop-filter: blur(8px);
+        }
+
         .camera-icon {
             position: fixed;
             font-size: 2.5em;
@@ -118,9 +129,11 @@
             z-index: 100;
         }
         
-        #cam1 { top: 5%; left: 5%; }
-        #cam2 { bottom: 10%; right: 5%; }
-        #cam3 { top: 20%; right: 15%; }
+        #icon-premise { top: 5%; left: 5%; }
+        #icon-characters { bottom: 10%; right: 5%; }
+        #icon-themes { top: 20%; right: 15%; }
+        #icon-symbols { bottom: 25%; left: 10%; }
+
 
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.8; }
@@ -128,6 +141,18 @@
             100% { transform: scale(1); opacity: 0.8; }
         }
 
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;
+        }
+
+        .visible {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;
+        }
+        
         @media (max-width: 768px) {
             .content-columns {
                 flex-direction: column;
@@ -146,9 +171,13 @@
     <p>Un viaje al mundo de Truman Burbank, donde cada momento es una actuación.</p>
 </header>
 
-<div class="content-columns">
+<div id="welcome-message" class="welcome-message">
+    Haz clic en un ícono para ver la información.
+</div>
+
+<div id="main-content" class="content-columns hidden">
     <div class="column">
-        <section class="section">
+        <section id="premise-section" class="section hidden">
             <div class="section-text">
                 <h2>La Premisa</h2>
                 <p>La película presenta a **Truman Burbank**, un hombre que vive una vida idílica en la pintoresca ciudad de Seahaven. Sin embargo, lo que él no sabe es que su mundo es un gigantesco set de televisión y su vida entera es un reality show transmitido las 24 horas del día. Cada persona que conoce, desde su familia hasta sus vecinos, es un actor pagado, y cada evento está cuidadosamente orquestado por el director **Christof** para mantener la ilusión.</p>
@@ -158,7 +187,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section id="themes-section" class="section hidden">
             <div class="section-text">
                 <h2>Temas Principales</h2>
                 <ul>
@@ -169,13 +198,13 @@
                 </ul>
             </div>
             <div class="section-image">
-                <span>[Imagen sobre el tema]</span>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_xNq4lR-68Wl_l5p6vS2x7gM_l8z8z0y5z6Q&s" alt="Imagen de temas principales">
             </div>
         </section>
     </div>
 
     <div class="column">
-        <section class="section">
+        <section id="characters-section" class="section hidden">
             <div class="section-text">
                 <h2>Personajes Principales</h2>
                 <ul>
@@ -190,7 +219,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section id="symbols-section" class="section hidden">
             <div class="section-text">
                 <h2>Símbolos Clave</h2>
                 <ul>
@@ -201,15 +230,46 @@
                 </ul>
             </div>
             <div class="section-image">
-                <span>[Imagen de un símbolo]</span>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_xNq4lR-68Wl_l5p6vS2x7gM_l8z8z0y5z6Q&s" alt="Imagen de un símbolo">
             </div>
         </section>
     </div>
 </div>
 
-<div id="cam1" class="camera-icon">👁️</div>
-<div id="cam2" class="camera-icon">🎥</div>
-<div id="cam3" class="camera-icon">📸</div>
+<div id="icon-premise" class="camera-icon" data-target="premise-section" style="top: 5%; left: 5%;">👁️</div>
+<div id="icon-characters" class="camera-icon" data-target="characters-section" style="bottom: 10%; right: 5%;">📸</div>
+<div id="icon-themes" class="camera-icon" data-target="themes-section" style="top: 20%; right: 15%;">🎥</div>
+<div id="icon-symbols" class="camera-icon" data-target="symbols-section" style="bottom: 25%; left: 10%;">💡</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const icons = document.querySelectorAll('.camera-icon');
+        const sections = document.querySelectorAll('.section');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const mainContent = document.getElementById('main-content');
+
+        icons.forEach(icon => {
+            icon.addEventListener('click', (event) => {
+                const targetId = event.currentTarget.dataset.target;
+
+                // Hide welcome message
+                welcomeMessage.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+
+                // Toggle visibility of sections
+                sections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.classList.remove('hidden');
+                        section.classList.add('visible');
+                    } else {
+                        section.classList.remove('visible');
+                        section.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
