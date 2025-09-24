@@ -16,18 +16,7 @@
             background-position: center;
             background-attachment: fixed;
             color: #333;
-            overflow: hidden; 
-        }
-        
-        .domo-container {
-            position: relative;
-            width: 90vmin;
-            height: 90vmin;
-            margin: 5vh auto;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.85); 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            padding: 5vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -39,42 +28,54 @@
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 20px;
+            margin: 40px 0 20px 0;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
         
         .header h1 {
-            font-size: clamp(2em, 5vw, 4em);
-            color: #004085;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: clamp(2.5em, 6vw, 5em);
+            color: #d9534f;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .header p {
+            font-size: clamp(0.8em, 2vw, 1.5em);
         }
 
-        .section-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 30px;
+        .content-columns {
+            display: flex;
+            justify-content: space-around;
             width: 100%;
+            padding: 20px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 45%;
         }
         
         .section {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.7);
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: left;
-
+            backdrop-filter: blur(5px);
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 15px;
         }
         
         .section h2 {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.5em;
-            color: #d9534f;
-            border-bottom: 2px solid #eee;
+            font-size: 1.8em;
+            color: #004085;
+            border-bottom: 2px solid #ddd;
             padding-bottom: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            text-align: center;
         }
         
         .section-text {
@@ -82,13 +83,14 @@
         }
 
         .section-image {
-            flex: 1;
+            width: 100%;
             border-radius: 10px;
             min-height: 100px;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            margin-top: 15px;
         }
         .section-image img {
             max-width: 100%;
@@ -103,55 +105,84 @@
         }
         
         li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         
         .camera-icon {
-            position: absolute;
-            font-size: 2em;
-            color: #555;
+            position: fixed;
+            font-size: 2.5em;
+            color: #000;
             animation: pulse 2s infinite ease-in-out;
             cursor: pointer;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+            z-index: 100;
         }
         
-        #cam1 { top: 5%; left: 10%; }
-        #cam2 { bottom: 15%; right: 5%; }
-        #cam3 { top: 25%; right: 10%; }
+        #cam1 { top: 5%; left: 5%; }
+        #cam2 { bottom: 10%; right: 5%; }
+        #cam3 { top: 20%; right: 15%; }
 
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.1); opacity: 1; }
             100% { transform: scale(1); opacity: 0.8; }
         }
+
+        @media (max-width: 768px) {
+            .content-columns {
+                flex-direction: column;
+                align-items: center;
+            }
+            .column {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="domo-container">
-    <header class="header">
-        <h1>The Truman Show: La Realidad Falsificada</h1>
-        <p>Un viaje al mundo de Truman Burbank, donde cada momento es una actuación.</p>
-    </header>
+<header class="header">
+    <h1>The Truman Show: La Realidad Falsificada</h1>
+    <p>Un viaje al mundo de Truman Burbank, donde cada momento es una actuación.</p>
+</header>
 
-    <div class="section-grid">
+<div class="content-columns">
+    <div class="column">
         <section class="section">
             <div class="section-text">
                 <h2>La Premisa</h2>
-                <p>Un hombre, Truman Burbank, vive una vida aparentemente normal sin saber que es el protagonista de un reality show las 24 horas del día.</p>
+                <p>La película presenta a **Truman Burbank**, un hombre que vive una vida idílica en la pintoresca ciudad de Seahaven. Sin embargo, lo que él no sabe es que su mundo es un gigantesco set de televisión y su vida entera es un reality show transmitido las 24 horas del día. Cada persona que conoce, desde su familia hasta sus vecinos, es un actor pagado, y cada evento está cuidadosamente orquestado por el director **Christof** para mantener la ilusión.</p>
             </div>
             <div class="section-image">
-                <img src="data:image/jpeg;base64,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" alt="Imagen de Truman">
+                <img src="data:image/jpeg;base64,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" alt="Imagen de Truman">
             </div>
         </section>
 
         <section class="section">
             <div class="section-text">
+                <h2>Temas Principales</h2>
+                <ul>
+                    <li><strong>Manipulación de la realidad:</strong> Se explora cómo los medios pueden moldear la percepción de la realidad, creando un mundo artificial para el consumo público.</li>
+                    <li><strong>Pérdida de la privacidad:</strong> La vida de Truman es un recordatorio extremo de la vigilancia constante a la que estamos sometidos, cuestionando los límites entre la vida personal y la exposición pública.</li>
+                    <li><strong>Control y libertad:</strong> La película es una lucha entre la prisión segura y orquestada que es Seahaven y la incertidumbre de la libertad real fuera del domo.</li>
+                    <li><strong>Búsqueda de la verdad:</strong> El viaje de Truman es un profundo deseo humano de descubrir la verdad sobre su existencia, incluso cuando esa verdad es dolorosa y aterradora.</li>
+                </ul>
+            </div>
+            <div class="section-image">
+                <span>[Imagen sobre el tema]</span>
+            </div>
+        </section>
+    </div>
+
+    <div class="column">
+        <section class="section">
+            <div class="section-text">
                 <h2>Personajes Principales</h2>
                 <ul>
-                    <li><strong>Truman Burbank:</strong> El protagonista.</li>
-                    <li><strong>Christof:</strong> El creador y director.</li>
-                    <li><strong>Meryl Burbank:</strong> La "esposa".</li>
-                    <li><strong>Marlon:</strong> El "mejor amigo".</li>
+                    <li><strong>Truman Burbank:</strong> El protagonista, un hombre optimista cuya vida perfecta esconde una profunda insatisfacción y una búsqueda subconsciente de la verdad.</li>
+                    <li><strong>Christof:</strong> El creador y director de The Truman Show. Es una figura de poder que se ve a sí mismo como un artista, creyendo que su creación es un regalo para el mundo.</li>
+                    <li><strong>Meryl Burbank (Hannah Gill):</strong> La "esposa" de Truman. Una actriz que lucha por mantener su papel mientras el comportamiento de Truman se vuelve cada vez más errático.</li>
+                    <li><strong>Marlon (Louis Coltrane):</strong> El "mejor amigo" de Truman. Su rol es el de confidente, pero en realidad trabaja para Christof y trata de disuadir a Truman de sus sospechas.</li>
                 </ul>
             </div>
             <div class="section-image">
@@ -161,27 +192,12 @@
 
         <section class="section">
             <div class="section-text">
-                <h2>Temas Principales</h2>
-                <ul>
-                    <li>Manipulación de la realidad</li>
-                    <li>Pérdida de la privacidad</li>
-                    <li>Control y libertad</li>
-                    <li>Búsqueda de la verdad</li>
-                </ul>
-            </div>
-            <div class="section-image">
-                <span>[Imagen sobre el tema]</span>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-text">
                 <h2>Símbolos Clave</h2>
                 <ul>
-                    <li>El Domo de Seahaven</li>
-                    <li>El barco "Santa María"</li>
-                    <li>El ojo de la cámara</li>
-                    <li>El cielo pintado</li>
+                    <li><strong>El Domo de Seahaven:</strong> Representa la prisión metafórica y física en la que vive Truman, un universo creado y controlado para él.</li>
+                    <li><strong>El barco "Santa María":</strong> El nombre del barco de Truman evoca el viaje de descubrimiento de Colón, simbolizando su propia búsqueda de un mundo desconocido.</li>
+                    <li><strong>El ojo de la cámara:</strong> Ubicadas en todas partes, las cámaras son un símbolo de la vigilancia constante y la falta de privacidad de Truman.</li>
+                    <li><strong>El cielo pintado:</strong> El cielo falso es la metáfora definitiva de la falsedad de su mundo. La escena donde Truman rompe la pared del domo es el clímax de su liberación.</li>
                 </ul>
             </div>
             <div class="section-image">
