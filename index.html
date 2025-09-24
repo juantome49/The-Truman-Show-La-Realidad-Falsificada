@@ -11,14 +11,10 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            /* Usamos la URL del banner como fondo */
-            background-image: url('
-
-http://googleusercontent.com/image_collection/image_retrieval/1394602496474186437_0
-');
-            background-size: cover; /* La imagen cubre todo el fondo */
-            background-position: center; /* Centramos la imagen */
-            background-attachment: fixed; /* La imagen no se mueve al hacer scroll */
+            background-image: url('http://googleusercontent.com/image_collection/image_retrieval/1394602496474186437_0');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: #333;
             overflow: hidden; 
         }
@@ -29,7 +25,6 @@ http://googleusercontent.com/image_collection/image_retrieval/139460249647418643
             height: 90vmin;
             margin: 5vh auto;
             border-radius: 50%;
-            /* Fondo semi-transparente para mejorar la legibilidad del texto */
             background-color: rgba(255, 255, 255, 0.85); 
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             padding: 5vh;
@@ -61,14 +56,19 @@ http://googleusercontent.com/image_collection/image_retrieval/139460249647418643
             width: 100%;
         }
         
+        /* Modificación clave: Usamos Flexbox para alinear el contenido y la imagen */
         .section {
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             text-align: left;
-        }
 
+            display: flex;
+            align-items: center; /* Centra verticalmente los elementos */
+            gap: 15px; /* Espacio entre el texto y la imagen */
+        }
+        
         .section h2 {
             font-family: 'Oswald', sans-serif;
             font-size: 1.5em;
@@ -76,6 +76,26 @@ http://googleusercontent.com/image_collection/image_retrieval/139460249647418643
             border-bottom: 2px solid #eee;
             padding-bottom: 5px;
             margin-bottom: 10px;
+        }
+        
+        /* Contenedor para el texto */
+        .section-text {
+            flex: 2; /* Ocupa 2/3 del espacio */
+        }
+
+        /* Contenedor para la imagen */
+        .section-image {
+            flex: 1; /* Ocupa 1/3 del espacio */
+            background-color: #f0f0f0; /* Un color de placeholder para que se vea el espacio */
+            border-radius: 10px;
+            min-height: 100px; /* Tamaño mínimo para que el espacio sea visible */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #aaa;
+            font-size: 0.8em;
+            text-align: center;
+            padding: 5px;
         }
         
         ul {
@@ -116,38 +136,58 @@ http://googleusercontent.com/image_collection/image_retrieval/139460249647418643
 
     <div class="section-grid">
         <section class="section">
-            <h2>La Premisa</h2>
-            <p>Un hombre, Truman Burbank, vive una vida aparentemente normal sin saber que es el protagonista de un reality show las 24 horas del día.</p>
+            <div class="section-text">
+                <h2>La Premisa</h2>
+                <p>Un hombre, Truman Burbank, vive una vida aparentemente normal sin saber que es el protagonista de un reality show las 24 horas del día.</p>
+            </div>
+            <div class="section-image">
+                <span>[Imagen de Truman]</span>
+            </div>
         </section>
 
         <section class="section">
-            <h2>Personajes Principales</h2>
-            <ul>
-                <li><strong>Truman Burbank:</strong> El protagonista.</li>
-                <li><strong>Christof:</strong> El creador y director.</li>
-                <li><strong>Meryl Burbank:</strong> La "esposa".</li>
-                <li><strong>Marlon:</strong> El "mejor amigo".</li>
-            </ul>
+            <div class="section-text">
+                <h2>Personajes Principales</h2>
+                <ul>
+                    <li><strong>Truman Burbank:</strong> El protagonista.</li>
+                    <li><strong>Christof:</strong> El creador y director.</li>
+                    <li><strong>Meryl Burbank:</strong> La "esposa".</li>
+                    <li><strong>Marlon:</strong> El "mejor amigo".</li>
+                </ul>
+            </div>
+            <div class="section-image">
+                <span>[Imagen de los personajes]</span>
+            </div>
         </section>
 
         <section class="section">
-            <h2>Temas Principales</h2>
-            <ul>
-                <li>Manipulación de la realidad</li>
-                <li>Pérdida de la privacidad</li>
-                <li>Control y libertad</li>
-                <li>Búsqueda de la verdad</li>
-            </ul>
+            <div class="section-text">
+                <h2>Temas Principales</h2>
+                <ul>
+                    <li>Manipulación de la realidad</li>
+                    <li>Pérdida de la privacidad</li>
+                    <li>Control y libertad</li>
+                    <li>Búsqueda de la verdad</li>
+                </ul>
+            </div>
+            <div class="section-image">
+                <span>[Imagen sobre el tema]</span>
+            </div>
         </section>
 
         <section class="section">
-            <h2>Símbolos Clave</h2>
-            <ul>
-                <li>El Domo de Seahaven</li>
-                <li>El barco "Santa María"</li>
-                <li>El ojo de la cámara</li>
-                <li>El cielo pintado</li>
-            </ul>
+            <div class="section-text">
+                <h2>Símbolos Clave</h2>
+                <ul>
+                    <li>El Domo de Seahaven</li>
+                    <li>El barco "Santa María"</li>
+                    <li>El ojo de la cámara</li>
+                    <li>El cielo pintado</li>
+                </ul>
+            </div>
+            <div class="section-image">
+                <span>[Imagen de un símbolo]</span>
+            </div>
         </section>
     </div>
 </div>
