@@ -69,7 +69,7 @@
             flex-direction: column;
             align-items: center;
             
-            position: fixed; /* Cambiado a fixed para centrar en la ventana */
+            position: fixed; 
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -135,10 +135,11 @@
             z-index: 100;
         }
         
-        #icon-premise { top: 10%; left: 10%; }
-        #icon-characters { bottom: 20%; right: 10%; }
-        #icon-themes { top: 20%; right: 15%; }
-        #icon-symbols { bottom: 25%; left: 10%; }
+        /* Posicionamiento de los 4 iconos */
+        #icon-premise { top: 30px; left: 30px; }
+        #icon-characters { top: 30px; right: 30px; }
+        #icon-themes { bottom: 30px; right: 30px; }
+        #icon-symbols { bottom: 30px; left: 30px; }
 
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.8; }
@@ -169,11 +170,11 @@
                 font-size: 2em;
             }
 
-            #icon-premise { top: 8%; left: 8%; }
-            #icon-characters { bottom: 8%; right: 8%; }
-            #icon-themes { top: 8%; right: 8%; }
-            #icon-symbols { bottom: 8%; left: 8%; }
-
+            #icon-premise { top: 20px; left: 20px; }
+            #icon-characters { top: 20px; right: 20px; }
+            #icon-themes { bottom: 20px; right: 20px; }
+            #icon-symbols { bottom: 20px; left: 20px; }
+            
             .section {
                 max-width: 95%;
                 padding: 15px;
@@ -254,10 +255,10 @@
     </div>
 </section>
 
-<div id="icon-premise" class="camera-icon" data-target="premise-section" style="left: 15%; top: 25%;">👁️</div>
-<div id="icon-characters" class="camera-icon" data-target="characters-section" style="right: 15%; bottom: 25%;">📸</div>
-<div id="icon-themes" class="camera-icon" data-target="themes-section" style="left: 25%; bottom: 10%;">🎥</div>
-<div id="icon-symbols" class="camera-icon" data-target="symbols-section" style="right: 25%; top: 10%;">💡</div>
+<div id="icon-premise" class="camera-icon" data-target="premise-section">👁️</div>
+<div id="icon-characters" class="camera-icon" data-target="characters-section">📸</div>
+<div id="icon-themes" class="camera-icon" data-target="themes-section">🎥</div>
+<div id="icon-symbols" class="camera-icon" data-target="symbols-section">💡</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -296,17 +297,10 @@
                     }
                 });
 
-                icon.addEventListener('mouseout', (event) => {
-                    const targetId = event.currentTarget.dataset.target;
-                    const targetSection = document.getElementById(targetId);
-                    
-                    if (targetSection) {
-                        targetSection.classList.remove('visible');
-                        targetSection.classList.add('hidden');
-                        modalOverlay.classList.remove('visible');
-                        modalOverlay.classList.add('hidden');
-                    }
-                });
+                // Se elimina el evento mouseout para que la tarjeta permanezca visible
+                // hasta que el usuario se mueva a otro icono o haga clic fuera del modal.
+                // Para cerrar, el usuario debe hacer clic en el overlay.
+                modalOverlay.addEventListener('click', hideAllSectionsAndOverlay);
             });
         } else {
             // Lógica para móviles (click)
@@ -338,6 +332,8 @@
                     }
                 });
             });
+            
+            modalOverlay.addEventListener('click', hideAllSectionsAndOverlay);
         }
     });
 </script>
